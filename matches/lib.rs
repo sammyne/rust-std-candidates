@@ -133,7 +133,7 @@ fn assert_matches_panics() {
 }
 
 #[cfg(feature = "testing")]
-mod sgx_tests;
+pub mod tests;
 
-#[cfg(feature = "testing")]
-pub use sgx_tests::do_rsgx_test;
+//#[cfg(feature = "testing")]
+//pub use sgx_tests as tests;
