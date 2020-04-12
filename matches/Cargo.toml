@@ -8,6 +8,21 @@ description = "A macro to evaluate, as a boolean, whether an expression matches 
 documentation = "https://docs.rs/matches/"
 edition = "2018"
 
+exclude = ["/tests/sgx/*"]
+
 [lib]
 name = "matches"
 path = "lib.rs"
+
+[dependencies.sgx_tstd]
+git = "https://github.com/apache/teaclave-sgx-sdk"
+rev = "v1.1.1"
+
+[dependencies.sgx_tunittest]
+git = "https://github.com/apache/teaclave-sgx-sdk"
+optional = true
+rev = "v1.1.1"
+
+[features]
+default = []
+testing = ["sgx_tunittest"]

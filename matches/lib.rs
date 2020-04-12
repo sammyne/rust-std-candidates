@@ -1,3 +1,7 @@
+#![no_std]
+
+extern crate sgx_tstd as std;
+
 /// Check if an expression matches a refutable pattern.
 ///
 /// Syntax: `matches!(` *expression* `,` *pattern* `)`
@@ -97,7 +101,8 @@ macro_rules! debug_assert_matches {
     }
 }
 
-#[test]
+//#[test]
+#[cfg(feature = "testing")]
 fn matches_works() {
     let foo = Some("-12");
     assert!(matches!(foo, Some(bar) if
@@ -106,7 +111,8 @@ fn matches_works() {
     ));
 }
 
-#[test]
+//#[test]
+#[cfg(feature = "testing")]
 fn assert_matches_works() {
     let foo = Some("-12");
     assert_matches!(foo, Some(bar) if
@@ -115,8 +121,9 @@ fn assert_matches_works() {
     );
 }
 
-#[test]
-#[should_panic(expected = "assertion failed: `Some(\"-AB\")` does not match ")]
+//#[test]
+//#[should_panic(expected = "assertion failed: `Some(\"-AB\")` does not match ")]
+#[cfg(feature = "testing")]
 fn assert_matches_panics() {
     let foo = Some("-AB");
     assert_matches!(foo, Some(bar) if
@@ -124,3 +131,9 @@ fn assert_matches_panics() {
         matches!(bar.as_bytes()[1], b'0'...b'9')
     );
 }
+
+#[cfg(feature = "testing")]
+mod sgx_tests;
+
+#[cfg(feature = "testing")]
+pub use sgx_tests::do_rsgx_test;
