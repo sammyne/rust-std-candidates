@@ -1,3 +1,9 @@
+#![no_std]
+
+extern crate sgx_tstd as std;
+#[cfg(feature = "with-testing")]
+use testing::test;
+
 /// Check if an expression matches a refutable pattern.
 ///
 /// Syntax: `matches!(` *expression* `,` *pattern* `)`
@@ -123,4 +129,11 @@ fn assert_matches_panics() {
         matches!(bar.as_bytes()[0], b'+' | b'-') &&
         matches!(bar.as_bytes()[1], b'0'...b'9')
     );
+}
+
+#[cfg(feature = "with-testing")]
+pub mod tests {
+    use testing::generate_runner;
+
+    generate_runner!();
 }
