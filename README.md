@@ -6,6 +6,8 @@ Each crate is published separately on [crates.io](https://crates.io/)
 
 [RFC #163](https://github.com/rust-lang/rfcs/pull/163)
 
+![rsgx](https://github.com/sammyne/rust-std-candidates/workflows/rsgx/badge.svg?branch=rsgx1.1.2)
+
 A macro to evaluate, as a boolean, whether an expression matches a pattern.
 
 To use it, add to your `Cargo.toml`:
